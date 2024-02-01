@@ -189,7 +189,7 @@ can-comm:
 		load-container-names \
 		file_path="${abs_path}" \
 		filter="can-server" \
-		| xargs --open-tty --no-run-if-empty --replace={} docker exec -it {} monorepo_python -m opentrons_hardware.scripts.can_comm --interface opentrons_sock
+		| xargs --open-tty --no-run-if-empty --replace={} docker exec -it {} python3.10 -m opentrons_hardware.scripts.can_comm --interface opentrons_sock
 
 .PHONY: can-mon
 can-mon:
@@ -199,7 +199,7 @@ can-mon:
 		load-container-names \
 		file_path="${abs_path}" \
 		filter="can-server" \
-		| xargs --open-tty --no-run-if-empty --replace={} docker exec -it {} monorepo_python -m opentrons_hardware.scripts.can_mon --interface opentrons_sock
+		| xargs --open-tty --no-run-if-empty --replace={} docker exec -it {} python3.10 -m opentrons_hardware.scripts.can_mon --interface opentrons_sock
 
 .PHONY: refresh-dev
 refresh-dev:
@@ -216,7 +216,7 @@ refresh-dev:
 		load-container-names \
 		file_path="${abs_path}" \
 		filter="monorepo-containers" \
-		| xargs --max-procs=6 --open-tty --no-run-if-empty --replace={} docker exec -t {} bash -c "monorepo_python -m pip install /dist/*"
+		| xargs --max-procs=6 --open-tty --no-run-if-empty --replace={} docker exec -t {} bash -c "python3.10 -m pip install /dist/*"
 
 	@$(MAKE) \
 		--no-print-directory \
@@ -241,7 +241,7 @@ refresh-dev-ci:
 		load-container-names \
 		file_path="${abs_path}" \
 		filter="monorepo-containers" \
-		| xargs --max-procs=6 --no-run-if-empty --replace={} docker exec -t {} bash -c "monorepo_python -m pip install /dist/*"
+		| xargs --max-procs=6 --no-run-if-empty --replace={} docker exec -t {} bash -c "python3.10 -m pip install /dist/*"
 
 	@$(MAKE) \
 		--no-print-directory \
