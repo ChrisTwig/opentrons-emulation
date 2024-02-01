@@ -36,28 +36,28 @@ case $OPENTRONS_HARDWARE in
     )
     ;;
   thermocycler-firmware)
-    bash -c "monorepo_python -m opentrons.hardware_control.emulation.scripts.run_module_emulator thermocycler $MODULE_ARGS"
+    bash -c "python3.10 -m opentrons.hardware_control.emulation.scripts.run_module_emulator thermocycler $MODULE_ARGS"
     ;;
   heater-shaker-firmware)
-    bash -c "monorepo_python -m opentrons.hardware_control.emulation.scripts.run_module_emulator heatershaker $MODULE_ARGS"
+    bash -c "python3.10 -m opentrons.hardware_control.emulation.scripts.run_module_emulator heatershaker $MODULE_ARGS"
     ;;
   tempdeck-firmware)
-    bash -c "monorepo_python -m opentrons.hardware_control.emulation.scripts.run_module_emulator tempdeck $MODULE_ARGS"
+    bash -c "python3.10 -m opentrons.hardware_control.emulation.scripts.run_module_emulator tempdeck $MODULE_ARGS"
     ;;
   magdeck-firmware)
-    bash -c "monorepo_python -m opentrons.hardware_control.emulation.scripts.run_module_emulator magdeck $MODULE_ARGS"
+    bash -c "python3.10 -m opentrons.hardware_control.emulation.scripts.run_module_emulator magdeck $MODULE_ARGS"
     ;;
   robot-server)
     bash -c "uvicorn "robot_server:app" --host 0.0.0.0 --port 31950 --ws wsproto"
     ;;
   emulator-proxy)
-    monorepo_python -m opentrons.hardware_control.emulation.app
+    python3.10 -m opentrons.hardware_control.emulation.app
     ;;
   smoothie)
-    bash -c "monorepo_python -m opentrons.hardware_control.emulation.scripts.run_smoothie"
+    bash -c "python3.10 -m opentrons.hardware_control.emulation.scripts.run_smoothie"
     ;;
   can-server)
-    bash -c "monorepo_python -m opentrons_hardware.scripts.sim_socket_can"
+    bash -c "python3.10 -m opentrons_hardware.scripts.sim_socket_can"
     ;;
   *)
     echo "Command ${OPENTRONS_HARDWARE} not found."
